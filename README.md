@@ -1,4 +1,4 @@
-# Intro-to-ML
+# Intro to ML
 In this course a student will learn the best practices for designing and executing machine learning projects.A student will be learning how to model projects using regression, classification and clustering for different applications. In the end they will be creating a content recommender system for OTT platform users.
 
 
