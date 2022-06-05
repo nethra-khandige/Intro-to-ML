@@ -5,16 +5,21 @@ file_name='https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IB
 dff=pd.read_csv(file_name)
 dff=dff.drop(["id"],axis=1)
 dff=dff.drop(["Unnamed: 0"],axis=1)
+avg_bedrooms=dff["bedrooms"].astype("float").mean(axis=0)
+dff["bedrooms"].replace(np.nan,avg_bedrooms,inplace=True)
+
+avg_bathrooms=dff["bathrooms"].astype("float").mean(axis=0)
+dff["bathrooms"].replace(np.nan,avg_bedrooms,inplace=True)
 
 from sklearn.model_selection import train_test_split
 from sklearn import linear_model
 X_train,X_test,y_train,y_test=train_test_split(dff,dff,test_size=.2,random_state=4);
 reg = linear_model.LinearRegression()
-train_x=np.asanyarray(X_train[['price']])
-train_y=np.asanyarray(X_train[['yr_built']])
+train_x=np.asanyarray(X_train[['yr_built']])
+train_y=np.asanyarray(X_train[['price']])
 reg.fit(train_x,train_y)
-test_x=np.asanyarray(X_test[['price']])
-test_y=np.asanyarray(X_test[['yr_built']])
+test_x=np.asanyarray(X_test[['yr_built']])
+test_y=np.asanyarray(X_test[['price']])
 tes_y_=reg.predict(test_x)
 mae= np.mean(np.absolute(test_y_ - test_y))
 mae_=mae/21613
@@ -28,10 +33,10 @@ from sklearn import linear_model'''
 X_train,X_test,y_train,y_test=train_test_split(dff,dff,test_size=0.2,random_state=4);
 regg = linear_model.LinearRegression()
 train_x=np.asanyarray(X_train[['grade']])
-train_y=np.asanyarray(X_train[['sqft_living']])
+train_y=np.asanyarray(X_train[['price']])
 regg.fit(train_x,train_y)
 test_x=np.asanyarray(X_test[['grade']])
-test_y=np.asanyarray(X_test[['sqft_living']])
+test_y=np.asanyarray(X_test[['price']])
 tes_y_=regg.predict(test_x)
 mae= np.mean(np.absolute(test_y_ - test_y))
 mae_=mae/21613
@@ -45,10 +50,10 @@ from sklearn import linear_model'''
 X_train,X_test,y_train,y_test=train_test_split(dff,dff,test_size=0.2,random_state=4);
 regg = linear_model.LinearRegression()
 train_x=np.asanyarray(X_train[['bedrooms']])
-train_y=np.asanyarray(X_train[['yr_renovated']])
+train_y=np.asanyarray(X_train[['price']])
 regg.fit(train_x,train_y)
 test_x=np.asanyarray(X_test[['bedrooms']])
-test_y=np.asanyarray(X_test[['yr_renovated']])
+test_y=np.asanyarray(X_test[['price']])
 tes_y_=regg.predict(test_x)
 mae= np.mean(np.absolute(test_y_ - test_y))
 mae_=mae/21613
@@ -61,11 +66,11 @@ print("Residual sum of squares (MSE): " ,mse_ )
 from sklearn import linear_model'''
 X_train,X_test,y_train,y_test=train_test_split(dff,dff,test_size=0.2,random_state=4);
 regg = linear_model.LinearRegression()
-train_x=np.asanyarray(X_train[['bathrooms']])
-train_y=np.asanyarray(X_train[['bedrooms']])
+train_x=np.asanyarray(X_train[['floor']])
+train_y=np.asanyarray(X_train[['price']])
 regg.fit(train_x,train_y)
-test_x=np.asanyarray(X_test[['bathrooms']])
-test_y=np.asanyarray(X_test[['bedrooms']])
+test_x=np.asanyarray(X_test[['floor']])
+test_y=np.asanyarray(X_test[['price']])
 tes_y_=regg.predict(test_x)
 mae= np.mean(np.absolute(test_y_ - test_y))
 mae_=mae/21613
@@ -80,10 +85,10 @@ from sklearn import linear_model'''
 X_train,X_test,y_train,y_test=train_test_split(dff,dff,test_size=0.2,random_state=4);
 regg = linear_model.LinearRegression()
 train_x=np.asanyarray(X_train[['sqft_basement']])
-train_y=np.asanyarray(X_train[['sqft_above']])
+train_y=np.asanyarray(X_train[['price']])
 regg.fit(train_x,train_y)
 test_x=np.asanyarray(X_test[['sqft_basement']])
-test_y=np.asanyarray(X_test[['sqft_above']])
+test_y=np.asanyarray(X_test[['price']])
 tes_y_=regg.predict(test_x)
 mae= np.mean(np.absolute(test_y_ - test_y))
 mae_=mae/21613
@@ -96,11 +101,11 @@ print("Residual sum of squares (MSE): " ,mse_ )
 from sklearn import linear_model'''
 X_train,X_test,y_train,y_test=train_test_split(dff,dff,test_size=0.2,random_state=4);
 regg = linear_model.LinearRegression()
-train_x=np.asanyarray(X_train[['sqft_above']])
-train_y=np.asanyarray(X_train[['sqft_basement']])
+train_x=np.asanyarray(X_train[['zipcode']])
+train_y=np.asanyarray(X_train[['price']])
 regg.fit(train_x,train_y)
-test_x=np.asanyarray(X_test[['sqft_above']])
-test_y=np.asanyarray(X_test[['sqft_basement']])
+test_x=np.asanyarray(X_test[['zipcode']])
+test_y=np.asanyarray(X_test[['price']])
 tes_y_=regg.predict(test_x)
 mae= np.mean(np.absolute(test_y_ - test_y))
 mae_=mae/21613
