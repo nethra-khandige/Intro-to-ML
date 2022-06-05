@@ -25,11 +25,11 @@ from sklearn.model_selection import train_test_split
 X_train,X_test,y_train,y_test=train_test_split(dff,dff,test_size=.2,random_state=4);
 from sklearn import linear_model
 regr = linear_model.LinearRegression()
-train_x = np.asanyarray(X_train[['price']])
-train_y = np.asanyarray(X_train[['sqft_living']])
+train_x = np.asanyarray(X_train[['sqft_living']])
+train_y = np.asanyarray(X_train[['price']])
 regr.fit(train_x, train_y)
-test_x = np.asanyarray(X_test[['price']])
-test_y = np.asanyarray(X_test[['sqft_living']])
+test_x = np.asanyarray(X_test[['sqft_living']])
+test_y = np.asanyarray(X_test[['price']])
 test_y_ = regr.predict(test_x)
 mae= np.mean(np.absolute(test_y_ - test_y))
 mae_=mae/21613
